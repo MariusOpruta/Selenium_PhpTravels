@@ -11,7 +11,7 @@ class HOTELTRAVEL:
     DATES_OUT = (By.XPATH, "//div[@id='checkout']//tbody//td[@class!='day disabled old']")
     SELECT_CHECK_OUT = (By.ID, "checkout")
     BUTTON_SUBMIT = (By.CSS_SELECTOR,"#submit")
-    URL = "https://phptravels.net/"
+    URL = "https://phptravels.net"
 
     def __init__(self, browser):
         self.browser = browser
@@ -31,21 +31,26 @@ class HOTELTRAVEL:
     def select_check_in(self):
         self.browser.find_element(*self.SELECT_CHECK_IN).click()
 
-    def get_date_in(self,element):
-        all_dates = self.browser.find_elements(*self.DATES_IN)
-        for date in all_dates:
-            if date.text == element:
-                date.click()
-            # if element.get_atribute('day ') != :
-            #     date.send_keys(element)
-                break
+    def get_select_check_in(self,date):
+        self.browser.find_element(*self.SELECT_CHECK_IN).send_keys(date)
+    # def get_date_in(self,element):
+    #     all_dates = self.browser.find_elements(*self.DATES_IN)
+    #     for date in all_dates:
+    #         if date.text == element:
+    #             date.click()
+    #         # if element.get_atribute('day ') != :
+    #         #     date.send_keys(element)
+    #             break
+    def date_check_out(self,dateo):
+        self.browser.find_element(*self.SELECT_CHECK_OUT).send_keys(dateo)
 
-    def get_date_out(self,elemment):
-        all_dates_out = self.browser.find_elements(*self.DATES_OUT)
-        for element in all_dates_out:
-            if element.get_atribute('day ') == elemment+20:
-                element.send_keys(elemment+20)
-                break
+
+    # def get_date_out(self,elemment):
+    #     all_dates_out = self.browser.find_elements(*self.DATES_OUT)
+    #     for element in all_dates_out:
+    #         if element.get_atribute('day ') == elemment+20:
+    #             element.send_keys(elemment+20)
+    #             break
 
 
     def click_submit(self):
