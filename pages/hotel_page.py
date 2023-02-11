@@ -33,18 +33,18 @@ class HOTELTRAVEL:
 
     def get_date_in(self,element):
         all_dates = self.browser.find_elements(*self.DATES_IN)
-        all_dates.send_keys(element)
-        # for date in all_dates:
-        #     if date.text == element:
-        #         date.click()
-        #         break
+        for date in all_dates:
+            if date.text == element:
+                date.click()
+            # if element.get_atribute('day ') != :
+            #     date.send_keys(element)
+                break
 
     def get_date_out(self,elemment):
         all_dates_out = self.browser.find_elements(*self.DATES_OUT)
         for element in all_dates_out:
             if element.get_atribute('day ') == elemment+20:
-                print(all_dates_out.text)
-                element.submit()
+                element.send_keys(elemment+20)
                 break
 
 
