@@ -5,12 +5,11 @@ class HOTELTRAVEL:
     SELECT_HOTEL_SEARCH = (By.ID,"select2-hotels_city-container")
     SEARCH_HOTEL = (By.CLASS_NAME,"select2-search__field")
     SELECT_CHECK_IN = (By.ID,"checkin")
-
-    DATES_IN = (By.XPATH, "//div[@id='checkin']//tbody//td[@class='day  active']")
-    # DATES_IN = (By.CSS_SELECTOR,"#fadein > div:nth-child(30) > div.datepicker-days > table > tbody > tr:nth-child(3) > td.day.active")
-    DATES_OUT = (By.XPATH, "//div[@id='checkout']//tbody//td[@class!='day disabled old']")
-    SELECT_CHECK_OUT = (By.ID, "checkout")
+    DATES_IN = (By.CSS_SELECTOR,"#checkin")
+    DATES_OUT = (By.CSS_SELECTOR,"#checkout")
+    SELECT_CHECK_OUT = (By.ID,"checkout")
     BUTTON_SUBMIT = (By.CSS_SELECTOR,"#submit")
+    RESULT = (By.CLASS_NAME,"sec__title_list")
     URL = "https://phptravels.net"
 
     def __init__(self, browser):
@@ -31,30 +30,30 @@ class HOTELTRAVEL:
     def select_check_in(self):
         self.browser.find_element(*self.SELECT_CHECK_IN).click()
 
-    def get_select_check_in(self,date):
-        self.browser.find_element(*self.SELECT_CHECK_IN).send_keys(date)
-    # def get_date_in(self,element):
-    #     all_dates = self.browser.find_elements(*self.DATES_IN)
-    #     for date in all_dates:
-    #         if date.text == element:
-    #             date.click()
-    #         # if element.get_atribute('day ') != :
-    #         #     date.send_keys(element)
-    #             break
-    def date_check_out(self,dateo):
-        self.browser.find_element(*self.SELECT_CHECK_OUT).send_keys(dateo)
+    def date_in(self,data):
+        check_in = self.browser.find_element(*self.DATES_IN)
 
+        # check_in.clear()
+        check_in.send_keys(data)
+        check_in.click()
 
-    # def get_date_out(self,elemment):
-    #     all_dates_out = self.browser.find_elements(*self.DATES_OUT)
-    #     for element in all_dates_out:
-    #         if element.get_atribute('day ') == elemment+20:
-    #             element.send_keys(elemment+20)
-    #             break
+    def select_check_out(self):
+        self.browser.find_element(*self.SELECT_CHECK_OUT).click()
+
+    def date_out(self,date):
+        check_out = self.browser.find_element(*self.DATES_OUT)
+        # check_out.clear()
+        check_out.send_keys(date)
+        check_out.click()
+
+    def get_result(self):
+        return self.browser.find_element(*self.RESULT).text
+
 
 
     def click_submit(self):
         self.browser.find_element(*self.BUTTON_SUBMIT).click()
+
 
 
 

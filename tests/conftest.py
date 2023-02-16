@@ -18,6 +18,7 @@ def browser():
     driver = webdriver.Firefox(service=Service(GeckoDriverManager().install())) # chrome_options=options)
     # maximaze window
     driver.maximize_window()
+    driver.implicitly_wait(10)
     #return driver - tabul pe care noi lucram
     yield driver
     #after tests - ce vrem sa facem dupa fiecare test
